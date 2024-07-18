@@ -1,0 +1,60 @@
+﻿@model List<Pie>
+<partial name="_Notification" />
+<div class="container">
+	<div class="row pt-4 pb-3">
+		<div class="col-6">
+			<h2 class="text-primary">
+				Pie List
+			</h2>
+		</div>
+		<div class="col-6 text-end">
+			<a asp-controller="DashPie" asp-action="Create" class="btn btn-primary rounded-2"> <i class="bi bi-plus-circle"></i> Create new Pie</a>
+
+		</div>
+	</div>
+
+
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+
+				<th>Category Id</th>
+				<th>Pie Id</th>
+				<th>Pie Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>InStock</th>
+				<th>Image</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var obj in Model)
+			{
+				<tr>
+					<td>
+						@obj.CategoryId
+					</td>
+					<td>
+						@obj.PieId
+					</td>
+					<td>
+						@obj.Name
+					</td>
+					<td>@obj.ShortDescription</td>
+					<td>@obj.Price</td>
+					<td>@obj.InStock</td>
+					<td> <img src=@obj.ImageUrl height="20px" width="20px" /></td>
+
+					<td>
+						<div class="w-75 btn-group" role="group">
+							<a asp-controller="DashPie" asp-action="Edit" asp-route-id="@obj.PieId" class="btn btn-primary rounded-2 mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
+							<a asp-controller="DashPie" asp-action="Delete" asp-route-id="@obj.PieId" class="btn btn-danger rounded-2 mx-2"><i class="bi bi-trash-fill"></i> Delete</a>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+
+	</table>
+</div>

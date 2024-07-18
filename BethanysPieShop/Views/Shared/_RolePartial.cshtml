@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
+    {
+        <li class="nav-item">
+            <a asp-controller="Dashboard" asp-action="Index" class="nav-link">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="DashPie" asp-action="Index" class="nav-link">DashPie</a>
+        </li>
+    }
+}

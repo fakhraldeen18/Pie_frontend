@@ -1,0 +1,88 @@
+﻿@model PieWithCategories
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Create New Pie</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<div asp-validation-summary="All"></div>
+
+			<label asp-for="pie.CategoryId"></label>
+			<select asp-for="pie.CategoryId"  class="form-control" >
+				<option>Select Category</option>
+				@foreach (var items in Model.categories)
+				{
+					<option value="@items.CategoryId">@items.CategoryName</option>
+				}
+			</select>
+			<span asp-validation-for="pie.CategoryId" class="text-danger"></span>
+
+			<label asp-for="pie.Name"></label>
+			<input asp-for="pie.Name" class="form-control" />
+			<span asp-validation-for="pie.Name" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="pie.ShortDescription"></label>
+			<input asp-for="pie.ShortDescription" class="form-control" />
+			<span asp-validation-for="pie.ShortDescription" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="pie.LongDescription"></label>
+			<input asp-for="pie.LongDescription" class="form-control" />
+			<span asp-validation-for="pie.LongDescription" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="pie.Price"></label>
+			<input asp-for="pie.Price" class="form-control" />
+			<span asp-validation-for="pie.Price" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="pie.ImageUrl"></label>
+			<input asp-for="pie.ImageUrl" class="form-control" />
+			<span asp-validation-for="pie.ImageUrl" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="pie.ImageThumbnailUrl"></label>
+			<input asp-for="pie.ImageThumbnailUrl" class="form-control" />
+			<span asp-validation-for="pie.ImageThumbnailUrl" class="text-danger"></span>
+		</div>
+
+
+		<div class="mb-3">
+			<label asp-for="pie.IsPieOfTheWeek"></label>
+			<input asp-for="pie.IsPieOfTheWeek" type="checkbox" value="true" class="form-control" />
+			<span asp-validation-for="pie.IsPieOfTheWeek" class="text-danger"></span>
+		</div>
+
+
+		<div class="mb-3">
+			<label asp-for="pie.InStock"></label>
+			<input asp-for="pie.InStock" type="checkbox" value="true" class=" form-control" />
+			<span asp-validation-for="pie.InStock" class="text-danger"></span>
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<button class="btn btn-primary rounded-2  form-control" type="submit">Create</button>
+			</div>  
+			<div class="col-6">
+				<a asp-controller="DashPie" asp-action="Index" class="btn btn-outline-secondary rounded-2 form-control
+">Back to List</a>
+
+			</div>
+
+		</div>
+
+	</div>
+</form>
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
